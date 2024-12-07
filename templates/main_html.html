@@ -1,0 +1,110 @@
+<!-- templates/main_html.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>UniAR-Associations</title> <!-- Título actualizado -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cargar MindAR y Three.js -->
+    <script src="{{ url_for('static', filename='libs/mindar/mindar-image-three.prod.js') }}"></script>
+    <script src="{{ url_for('static', filename='libs/three.js-r132/build/three.min.js') }}"></script>
+    <!-- Incluir model-viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <!-- Cargar el script principal -->
+    <script src="{{ url_for('static', filename='main.js') }}" type="module"></script>
+    <style>
+      html, body { 
+        position: relative; 
+        margin: 0; 
+        width: 100%; 
+        height: 100%; 
+        overflow: hidden; 
+        font-family: Arial, sans-serif;
+      }
+      #infoDiv {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden; /* Inicialmente oculto */
+        z-index: 10;
+      }
+      .info-container {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 90%;
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 2px solid #000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .info-text {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .info-text img {
+        max-width: 150px;
+        margin-bottom: 20px;
+      }
+      .info-text h2 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+      }
+      .info-text p {
+        flex: 1;
+        color: #34495e;
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: justify;
+      }
+      .info-text a {
+        text-decoration: none;
+        color: white;
+        background-color: #3498db;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      .model-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Contenedor para la información -->
+    <div id="infoDiv">
+      <div class="info-container">
+        <div class="info-text">
+          <!-- Logo, Nombre, Información y Botón serán insertados aquí -->
+        </div>
+        <div class="model-container">
+          <!-- Modelo 3D será insertado aquí -->
+        </div>
+      </div>
+    </div>
+    <!-- El contenido AR será renderizado aquí por Three.js -->
+  </body>
+</html>
