@@ -1,4 +1,3 @@
-// static/main.js
 import { loadGLTF } from "./libs/loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -11,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const mindarThree = new window.MINDAR.IMAGE.MindARThree({
         container: document.body,
         imageTargetSrc: '/static/assets/targets/logos-qr-targets.mind',
-        maxTrackers: 16, // Ajustar según necesidad
-        inputResolution: 1280, // Ajustar según necesidad
+        maxTrackers: 16,
+        inputResolution: 1280,
       });
 
       const { renderer, scene, camera } = mindarThree;
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const infoText = infoDiv.querySelector('.info-text');
       const modelContainer = infoDiv.querySelector('.model-container');
 
-      // Configuración centralizada para todos los grupos
+      // Configuración para todos los grupos
       const groups = [
         {
           name: 'CEC',
@@ -233,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log("Grupos configurados:", groups);
 
-      // Función para agregar un anchor dado el targetIndex y la configuración del grupo
+      // Función para agregar anchor
       const addAnchorForGroup = async (targetIndex, group) => {
         console.log(`Añadiendo anchor para targetIndex: ${targetIndex}, grupo: ${group.name}`);
         const anchor = mindarThree.addAnchor(targetIndex);
@@ -241,22 +240,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Asociar el contenido HTML al anchor
         anchor.onTargetFound = () => {
           console.log(`Target encontrado: ${group.name}`);
-          // Crear el contenido HTML estructurado
           infoText.innerHTML = `
             <img src="${group.image}" alt="${group.name} Logo">
             ${group.info}
             <a href="${group.website}" target="_blank">Más Información</a>
           `;
 
-          // Insertar el modelo 3D en el model-container usando <model-viewer>
+          // Insertar el modelo 3D
           modelContainer.innerHTML = `
             <model-viewer src="${group.modelPath}" alt="${group.name}" auto-rotate camera-controls style="width: 100%; height: 100%;">
-              <div class="fallback">
-              </div>
+              
             </model-viewer>
           `;
 
-          // Manejar errores en model-viewer
+          // Manejar errores
           const modelViewer = modelContainer.querySelector('model-viewer');
           modelViewer.addEventListener('error', (event) => {
             console.error(`Error cargando el modelo 3D para ${group.name}:`, event);
@@ -275,18 +272,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Iterar sobre cada grupo y agregar anclas para logo y qr
       for (const group of groups) {
-        // Agregar anchor para el logo
         await addAnchorForGroup(group.logoIndex, group);
-
-        // Agregar anchor para el QR
         await addAnchorForGroup(group.qrIndex, group);
       }
 
-      // Iniciar MindAR
       await mindarThree.start();
       console.log("MindAR iniciado correctamente.");
 
-      // Bucle de animación para renderizar la escena
       renderer.setAnimationLoop(() => {
         renderer.render(scene, camera);
       });

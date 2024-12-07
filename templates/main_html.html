@@ -1,16 +1,12 @@
-<!-- templates/main_html.html -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>UniAR-Associations</title> <!-- Título actualizado -->
+    <title>Uni-Groups-AR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Cargar MindAR y Three.js -->
     <script src="{{ url_for('static', filename='libs/mindar/mindar-image-three.prod.js') }}"></script>
     <script src="{{ url_for('static', filename='libs/three.min.js') }}"></script>
-    <!-- Incluir model-viewer -->
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <!-- Cargar el script principal -->
     <script src="{{ url_for('static', filename='main.js') }}" type="module"></script>
     <style>
       html, body { 
@@ -23,11 +19,11 @@
       }
       #infoDiv {
         position: absolute;
-        top: 10%; /* Ajusta la posición vertical */
-        left: 10%; /* Ajusta la posición horizontal */
-        width: 80%; /* Ajusta el ancho */
-        height: 80%; /* Ajusta la altura */
-        padding: 10px; /* Ajusta el espacio interno */
+        top: 10%;
+        left: 10%;
+        width: 80%; 
+        height: 80%;
+        padding: 10px;
         background-color: rgba(255, 255, 255, 0.95);
         display: flex;
         flex-direction: row;
@@ -102,7 +98,7 @@
         height: 100%;
         border: none;
       }
-      /* Scrollbar styling for better aesthetics */
+
       .info-text::-webkit-scrollbar {
         width: 8px;
       }
@@ -118,18 +114,17 @@
       }
     </style>
   </head>
+
   <body>
-    <!-- Contenedor para la información -->
+    <!-- Contenedor para la info -->
     <div id="infoDiv">
       <div class="info-container">
         <div class="info-text">
-          <!-- Logo, Nombre, Información, Actividades y Botón serán insertados aquí -->
         </div>
         <div class="model-container">
-          <!-- Modelo 3D será insertado aquí -->
         </div>
       </div>
     </div>
-    <!-- El contenido AR será renderizado aquí por Three.js -->
   </body>
+
 </html>
