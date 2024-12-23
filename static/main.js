@@ -1,4 +1,3 @@
-import { loadGLTF } from "./libs/loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
